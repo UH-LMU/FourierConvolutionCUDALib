@@ -81,8 +81,8 @@ namespace fourierconvolution {
     //FORWARD
     cufftHandle fftPlanFwd;
     CUFFT_ERROR(cufftPlan3d(&fftPlanFwd, shape[row_major::z], shape[row_major::y], shape[row_major::x], CUFFT_R2C));
-    if(CUDART_VERSION < 6050)
-      CUFFT_ERROR(cufftSetCompatibilityMode(fftPlanFwd,CUFFT_COMPATIBILITY_FFTW_PADDING));
+//    if(CUDART_VERSION < 6050)
+//      CUFFT_ERROR(cufftSetCompatibilityMode(fftPlanFwd,CUFFT_COMPATIBILITY_FFTW_PADDING));
 
     CUFFT_ERROR(cufftExecR2C(fftPlanFwd, (cufftReal*)d_stack, (cufftComplex *)d_stack));
     CUFFT_ERROR(cufftDestroy(fftPlanFwd));
@@ -96,8 +96,8 @@ namespace fourierconvolution {
     //BACKWARD
     cufftHandle fftPlanInv;
     CUFFT_ERROR(cufftPlan3d(&fftPlanInv, shape[row_major::z], shape[row_major::y], shape[row_major::x], CUFFT_C2R));
-    if(CUDART_VERSION < 6050)
-      CUFFT_ERROR(cufftSetCompatibilityMode(fftPlanInv,CUFFT_COMPATIBILITY_FFTW_PADDING));
+//    if(CUDART_VERSION < 6050)
+//      CUFFT_ERROR(cufftSetCompatibilityMode(fftPlanInv,CUFFT_COMPATIBILITY_FFTW_PADDING));
 
     CUFFT_ERROR(cufftExecC2R(fftPlanInv, (cufftComplex*)d_stack, (cufftReal *)d_stack));
     CUFFT_ERROR(cufftDestroy(fftPlanInv) );
@@ -151,8 +151,8 @@ namespace fourierconvolution {
     //FORWARD
     cufftHandle fftPlanFwd;
     CUFFT_ERROR(cufftPlan3d(&fftPlanFwd, shape[row_major::z], shape[row_major::y], shape[row_major::x], CUFFT_R2C));
-    if(CUDART_VERSION < 6050)
-      CUFFT_ERROR(cufftSetCompatibilityMode(fftPlanFwd,CUFFT_COMPATIBILITY_FFTW_PADDING));
+//    if(CUDART_VERSION < 6050)
+//      CUFFT_ERROR(cufftSetCompatibilityMode(fftPlanFwd,CUFFT_COMPATIBILITY_FFTW_PADDING));
     CUFFT_ERROR(cufftExecR2C(fftPlanFwd, d_real, d_complex));
 
     //apply scale
@@ -164,8 +164,8 @@ namespace fourierconvolution {
     //BACKWARD
     cufftHandle fftPlanInv;
     CUFFT_ERROR(cufftPlan3d(&fftPlanInv, shape[row_major::z], shape[row_major::y], shape[row_major::x], CUFFT_C2R));
-    if(CUDART_VERSION < 6050)
-      CUFFT_ERROR(cufftSetCompatibilityMode(fftPlanInv,CUFFT_COMPATIBILITY_FFTW_PADDING));
+//    if(CUDART_VERSION < 6050)
+//      CUFFT_ERROR(cufftSetCompatibilityMode(fftPlanInv,CUFFT_COMPATIBILITY_FFTW_PADDING));
 
     CUFFT_ERROR(cufftExecC2R(fftPlanInv, d_complex, d_real));
 
